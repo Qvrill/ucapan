@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maaf Sebelum Puasa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: radial-gradient(circle, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            max-width: 90%;
+        }
+        h1 {
+            font-size: 2em;
+            text-shadow: 0 0 10px cyan;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        .button {
+            background: cyan;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            box-shadow: 0 0 10px cyan;
+            transition: transform 0.2s;
+            border-radius: 10px;
+        }
+        .button:hover {
+            transform: scale(1.1);
+        }
+        .button.no {
+            background: cyan;
+            margin-left: 10px;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(-45deg);
+            animation: float 5s infinite ease-in-out;
+        }
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(-45deg); }
+            50% { transform: translateY(-30px) rotate(-45deg); }
+            100% { transform: translateY(0) rotate(-45deg); }
+        }
+        /* Responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .button {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Afaaku!💖</h1>
+        <p>Puasaa sudah hari ini~ Tapi sebelum itu, maafin acil ya kalau ada salah baik sengaja atau nggak. Semoga puasanya lancar dan penuh berkah! dan tetap menyangi acil ehe. SEMANGAT MENJALANI PUASA TAHUN INI APUU!! tenang insyaallah acil akan terus adaa di setiap puasa apuu ahaay ehehe </p>
+        <button class="button" onclick="showLove()">Maafin Aku?</button>
+        <button class="button no" onclick="shrinkNo(this, 3)">Nggak!</button>
+    </div>
+    <script>
+        function showLove() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                document.body.appendChild(heart);
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.top = Math.random() * window.innerHeight + "px";
+                setTimeout(() => heart.remove(), 7000);
+            }
+            alert("Yeay! Makasih APUWW! 💖");
+        }
+        
+        function shrinkNo(button, count) {
+            if (!button.dataset.clicks) {
+                button.dataset.clicks = count;
+            }
+            let clicksLeft = --button.dataset.clicks;
+            button.style.transform = `scale(${clicksLeft / count})`;
+            if (clicksLeft <= 0) {
+                button.remove();
+            }
+        }
+    </script>
+</body>
+</html>
